@@ -72,19 +72,19 @@ function Paddle(x, y) {
         }
 
         //bounce off player 1 paddle (fix)
-        this.bounceOffP1Paddle = function() {
+        this.ballPad1Collision = function() {
             if (yBall <= this.y + this.height && yBall >= this.y && xBall <= this.x + this.width) {
                 xBallMove *= -1
-                yBallMove *= -1
+                //yBallMove *= -1
                 console.log("hit");
             }
         }
         
         //bounce off player 1 paddle (fix)
-        this.bounceOffP2Paddle = function() {
-            if (yBall <= this.y + this.height && yBall >= this.y && xBall >= this.x + this.width) {
+        this.ballPad2Collision = function() {
+            if (yBall <= this.y + this.height && yBall >= this.y && xBall >= this.x) {
                 xBallMove *= -1
-                yBallMove *= -1
+                //yBallMove *= -1
                 console.log("hit");
             }
         }
@@ -114,6 +114,6 @@ var player2Paddle = new Paddle(width - 50, height / 2 - 50);
 function drawPaddles() {
     player1Paddle.make();
     player2Paddle.make();
-    player1Paddle.bounceOffP1Paddle();
-    player2Paddle.bounceOffP2Paddle();
+    player1Paddle.ballPad1Collision();
+    player2Paddle.ballPad2Collision();
 }
