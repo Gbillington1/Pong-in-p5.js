@@ -60,6 +60,15 @@ function keyPressed() {
 }
 
 function keyReleased() {
-    player1Paddle.stopPaddle();
-    player2Paddle.stopPaddle();
+    //only stop p1 paddle if the p1 controls are released
+    if (key === "W" || key === "S") {
+        
+        player1Paddle.stopPaddle1();
+        
+    //only stop p2 paddle if the p2 controls are released
+    } else if (keyCode === 38 || keyCode === 40) {
+
+        player2Paddle.stopPaddle2();
+
+    }
 }
