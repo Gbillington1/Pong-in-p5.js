@@ -41,8 +41,8 @@ function Paddle(x, y) {
             this.y = constrain(this.y, 0, height - this.height);
         }
 
-        //stops paddle movement when released
-        this.stopPaddle = function() {
+        //stops paddle 1 movement when released (player 1)
+        this.stopPaddle1 = function() {
             
             //resets p1 paddle
             if (p1PadMove === 6) {
@@ -56,6 +56,10 @@ function Paddle(x, y) {
                 p1PadMove = 0;
                 
             } 
+        }
+
+        //stops paddle 2 movement when released (player 2)
+        this.stopPaddle2 = function() {
 
             //resets p2 paddle
             if (p2PadMove === 6) {
@@ -71,21 +75,33 @@ function Paddle(x, y) {
             }
         }
 
-        //bounce off player 1 paddle (fix)
+        //bounce off player 1 paddle 
         this.ballPad1Collision = function() {
-            if (yBall <= this.y + this.height && yBall >= this.y && xBall <= this.x + this.width) {
+
+            if (yBall < this.y + this.height && yBall > this.y && xBall < this.x + this.width + ballDiameter / 2) {
                 xBallMove *= -1
-                //yBallMove *= -1
-                console.log("hit");
+            } 
+        }
+
+        //how do I make the ball stop getting stuck in the paddles? this doesnt seem to work
+        //top and bottom collision check for p1 paddle
+        this.topBottomCollision = function() {
+
+            if (yBall > this.y && xBall < this.x + this.width + 1) {
+                yBallMove *= -1;
             }
+            
+            if (yBall < this.y + this.height && xBall < this.x + this.width + 1) {
+                yBallMove *= -1;
+            }
+
+            
         }
         
-        //bounce off player 1 paddle (fix)
+        //bounce off player 2 paddle 
         this.ballPad2Collision = function() {
-            if (yBall <= this.y + this.height && yBall >= this.y && xBall >= this.x) {
+            if (yBall < this.y + this.height && yBall > this.y && xBall > this.x - ballDiameter / 2) {
                 xBallMove *= -1
-                //yBallMove *= -1
-                console.log("hit");
             }
         }
 
@@ -115,5 +131,6 @@ function drawPaddles() {
     player1Paddle.make();
     player2Paddle.make();
     player1Paddle.ballPad1Collision();
+    player1Paddle.topBottomCollision();
     player2Paddle.ballPad2Collision();
 }
