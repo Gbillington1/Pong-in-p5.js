@@ -83,19 +83,22 @@ function Paddle(x, y) {
             } 
         }
 
-        //how do I make the ball stop getting stuck in the paddles? this doesnt seem to work
         //top and bottom collision check for p1 paddle
-        this.topBottomCollision = function() {
+        this.topBottomCollisionP1 = function() {
 
-            if (yBall > this.y && xBall < this.x + this.width + 1) {
-                yBallMove *= -1;
-            }
-            
-            if (yBall < this.y + this.height && xBall < this.x + this.width + 1) {
-                yBallMove *= -1;
-            }
+            if (yBall > this.y && yBall < this.y + this.height && xBall < this.x + this.width + 2) {
+                xBallMove *= -1;
+            }       
 
-            
+        }
+
+        //top and bottom collision check for p2 paddle
+        this.topBottomCollisionP2 = function() {
+
+            if (yBall > this.y && yBall < this.y + this.height && xBall > this.x - 2) {
+                xBallMove *= -1;
+            }       
+
         }
         
         //bounce off player 2 paddle 
@@ -131,6 +134,7 @@ function drawPaddles() {
     player1Paddle.make();
     player2Paddle.make();
     player1Paddle.ballPad1Collision();
-    player1Paddle.topBottomCollision();
+    player1Paddle.topBottomCollisionP1();
+    player2Paddle.topBottomCollisionP2();
     player2Paddle.ballPad2Collision();
 }
