@@ -11,29 +11,8 @@ function halfLine() {
 var scoreP1 = 0;
 var scoreP2 = 0;
 
-//scoring functions
-function score() {
-    //adds 1 point every time p1Point or p2Point is true, then resets ball
-    //player 1 scoring
-    if (p1Point === true) {
-        scoreP1 ++;
-        resetBall();
-        resetPaddles();
-    } 
-    
-    //player 2 scoring
-    if (p2Point === true) {
-        scoreP2 ++;
-        resetBall();
-        resetPaddles();
-    }
-}
-
 //draws the score
 function drawScore() {
-    
-    score();
-
     //draws the player score
     textSize(60);
     fill(170);
