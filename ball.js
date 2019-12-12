@@ -44,12 +44,16 @@ function moveBall() {
 
     //bounces the ball off left wall
     if (xBall <= ballDiameter / 2) {
-        p2Point = true;
+        scoreP1 ++;
+        resetBall();
+        resetPaddles();
     }
 
     //bounces ball of right wall
     if (xBall >= width - ballDiameter / 2) {
-        p1Point = true;
+        scoreP2 ++;
+        resetBall();
+        resetPaddles();
     }
 
     //bounces ball off top and bottom
