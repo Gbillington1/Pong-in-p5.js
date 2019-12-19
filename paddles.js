@@ -86,8 +86,8 @@ function Paddle(x, y) {
         //top and bottom collision check for p1 paddle
         this.topBottomCollisionP1 = function() {
 
-            if (yBall > this.y && yBall < this.y + this.height && xBall < this.x + this.width + 2) {
-                xBallMove *= -1;
+            if (yBall > this.y - ballDiameter / 2 && yBall < this.y + this.height + ballDiameter / 2 && xBall < this.x + this.width + (ballDiameter / 2) - 1) {
+                yBallMove *= -1;
             }       
 
         }
@@ -95,8 +95,8 @@ function Paddle(x, y) {
         //top and bottom collision check for p2 paddle
         this.topBottomCollisionP2 = function() {
 
-            if (yBall > this.y && yBall < this.y + this.height && xBall > this.x - 2) {
-                xBallMove *= -1;
+            if (yBall > this.y + ballDiameter / 2 && yBall < this.y + this.height - ballDiameter / 2 && xBall / 2 > this.x + (ballDiameter / 2) + 1) {
+               yBallMove *= -1;
             }       
 
         }
