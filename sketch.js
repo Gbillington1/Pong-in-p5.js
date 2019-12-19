@@ -23,23 +23,23 @@ function startGameButton() {
 function drawGame() {
     rectMode(CORNER);
     background(0, 0, 0);
+    drawScore();
     drawPaddles();
     halfLine();
     makeBall();
-    drawScore();
 }
 
 //game mechanics
 function playGame() {
     rectMode(CORNER);
     background(0, 0, 0);
+	 drawScore();
     player1Paddle.movePlayer1Pad();
     player2Paddle.movePlayer2Pad();
     drawPaddles();
     halfLine();
     makeBall();
     moveBall();
-    drawScore();
 }
 
 function draw() {
