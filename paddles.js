@@ -78,33 +78,16 @@ function Paddle(x, y) {
         //bounce off player 1 paddle 
         this.ballPad1Collision = function() {
 
-            if (yBall < this.y + this.height && yBall > this.y && xBall < this.x + this.width + ballDiameter / 2) {
-                xBallMove *= -1
+            if (xBallMove < 0 && yBall <= this.y + this.height && yBall >= this.y && xBall - (ballDiameter / 2) <= this.x + this.width && xBall - (ballDiameter / 2) >= this.x + this.width) {
+                xBallMove *= -1;
+                //console.log("ball position " + yBall + " " + xBall);
             } 
-        }
-
-        //top and bottom collision check for p1 paddle
-        this.topBottomCollisionP1 = function() {
-
-            if (yBall > this.y - ballDiameter / 2 && yBall < this.y + this.height + ballDiameter / 2 && xBall < this.x + this.width + (ballDiameter / 2) - 1) {
-                yBallMove *= -1;
-            }       
-
-        }
-
-        //top and bottom collision check for p2 paddle
-        this.topBottomCollisionP2 = function() {
-
-            if (yBall > this.y + ballDiameter / 2 && yBall < this.y + this.height - ballDiameter / 2 && xBall / 2 > this.x + (ballDiameter / 2) + 1) {
-               yBallMove *= -1;
-            }       
-
         }
         
         //bounce off player 2 paddle 
         this.ballPad2Collision = function() {
-            if (yBall < this.y + this.height && yBall > this.y && xBall > this.x - ballDiameter / 2) {
-                xBallMove *= -1
+            if (xBallMove > 0 && yBall <= this.y + this.height && yBall >= this.y && xBall + (ballDiameter / 2) >= this.x && xBall + (ballDiameter / 2) <= this.x) {
+                xBallMove *= -1;
             }
         }
 
@@ -134,7 +117,5 @@ function drawPaddles() {
     player1Paddle.make();
     player2Paddle.make();
     player1Paddle.ballPad1Collision();
-    player1Paddle.topBottomCollisionP1();
-    player2Paddle.topBottomCollisionP2();
     player2Paddle.ballPad2Collision();
 }
