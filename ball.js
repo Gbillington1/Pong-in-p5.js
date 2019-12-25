@@ -3,7 +3,7 @@ var xBall = width / 2;
 //y-cord for ball 
 var yBall = height / 2;
 //diameter of ball
-var ballDiameter = 25;
+var ballDiameter = 30;
 //variables for moving ball (random)
 function randomBallMovement(min, max) {
     var num = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -12,10 +12,6 @@ function randomBallMovement(min, max) {
 
 var xBallMove = randomBallMovement(-5, 5);
 var yBallMove = randomBallMovement(-5, 5);
-
-//booleans for scoring 
-p1Point = false;
-p2Point = false;
 
 //making the ball
 function makeBall() {
@@ -28,8 +24,6 @@ function makeBall() {
 function resetBall() {
     xBall = width / 2;
     yBall = height / 2;
-    p1Point = false;
-    p2Point = false;
     gameActive = false;
 }
 
@@ -39,18 +33,16 @@ function moveBall() {
     xBall += xBallMove;
     //moving the ball (y) by 5 on every draw loop
     yBall += yBallMove;
-    //keeps ball in the canvas
-    yBall = constrain(yBall, 0, height - ballDiameter/2);
-
-    //bounces the ball off left wall
-    if (xBall <= ballDiameter / 2) {
+    
+    //scores point on left wall
+    if (xBall <= player1Paddle.x) {
         scoreP1 ++;
         resetBall();
         resetPaddles();
     }
 
-    //bounces ball of right wall
-    if (xBall >= width - ballDiameter / 2) {
+    //scores point on right wall
+    if (xBall >= player2Paddle.x + player2Paddle.width) {
         scoreP2 ++;
         resetBall();
         resetPaddles();
