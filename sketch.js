@@ -14,8 +14,6 @@ var gameActive = false;
 function startGameButton() {
     if (key === " " && gameActive === false) {
         gameActive = true;
-        xBallMove = randomBallMovement(-7, 7);
-        yBallMove = randomBallMovement(-7, 7);
     }
 }
 
@@ -33,7 +31,7 @@ function drawGame() {
 function playGame() {
     rectMode(CORNER);
     background(0, 0, 0);
-	 drawScore();
+	drawScore();
     player1Paddle.movePlayer1Pad();
     player2Paddle.movePlayer2Pad();
     drawPaddles();
