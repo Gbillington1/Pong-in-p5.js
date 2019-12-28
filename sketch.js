@@ -2,9 +2,13 @@
 var width = 800;
 var height = 500
 
+//says that all collisions are FALSE
+var hit = false;
+
 function setup() {
-    createCanvas(800, 500);
+    var canvas = createCanvas(800, 500);
     noStroke();
+    canvas.parent("container");
 }
 
 //sets the "home screen" to static image
