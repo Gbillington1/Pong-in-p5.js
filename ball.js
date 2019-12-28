@@ -4,6 +4,7 @@ var xBall = width / 2;
 var yBall = height / 2;
 //diameter of ball
 var ballDiameter = 30;
+var ballRadius = (ballDiameter / 2);
 //variables for moving ball (random)
 function randomBallMovement(min, max) {
     var num = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -35,21 +36,21 @@ function moveBall() {
     yBall += yBallMove;
     
     //scores point on left wall
-    if (xBall <= player1Paddle.x) {
+    if (xBall <= ballRadius) {
         scoreP1 ++;
         resetBall();
         resetPaddles();
     }
 
     //scores point on right wall
-    if (xBall >= player2Paddle.x + player2Paddle.width) {
+    if (xBall >= width - ballRadius) {
         scoreP2 ++;
         resetBall();
         resetPaddles();
     }
 
     //bounces ball off top and bottom
-    if (yBall < ballDiameter / 2 || yBall > height - ballDiameter) {
+    if (yBall < ballRadius || yBall > height - ballDiameter) {
         yBallMove *= -1;
     }
 }    
