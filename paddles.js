@@ -77,18 +77,53 @@ function Paddle(x, y) {
 
         //bounce off player 1 paddle 
         this.ballPad1Collision = function() {
-
-            if (xBallMove < 0 && yBall <= this.y + this.height && yBall >= this.y && xBall - (ballDiameter / 2) <= this.x + this.width && xBall - (ballDiameter / 2) >= this.x + this.width) {
+        
+            //detects right face collision
+            if (xBallMove < 0 && yBall <= this.y + this.height && yBall >= this.y && xBall - ballRadius <= this.x + this.width && xBall - ballRadius >= this.x + this.width) {
+                    
                 xBallMove *= -1;
-                //console.log("ball position " + yBall + " " + xBall);
-            } 
+                
+            }
+
+            //detects top of paddle collision
+            if (yBallMove > 0 && xBall - ballRadius < this.x + this.width && yBall - ballRadius <= this.y && yBall + ballRadius >= this.y) {
+                
+                yBallMove *= -1;
+            
+            }
+            
+            //detects bottom of paddle collision
+            if (yBallMove < 0 && xBall - ballRadius < this.x + this.width && yBall - ballRadius <= this.y + this.height && yBall + ballRadius >= this.y + this.height) {
+                
+                yBallMove *= -1;
+            
+            }
+            
         }
         
         //bounce off player 2 paddle 
         this.ballPad2Collision = function() {
-            if (xBallMove > 0 && yBall <= this.y + this.height && yBall >= this.y && xBall + (ballDiameter / 2) >= this.x && xBall + (ballDiameter / 2) <= this.x) {
+           
+            if (xBallMove > 0 && yBall <= this.y + this.height && yBall >= this.y && xBall + ballRadius >= this.x && xBall + ballRadius <= this.x) {
+                
                 xBallMove *= -1;
+            
             }
+
+            //detects top of paddle collision
+            if (yBallMove > 0 && xBall + ballRadius > this.x && yBall - ballRadius <= this.y && yBall + ballRadius >= this.y) {
+    
+                yBallMove *= -1;
+            
+            }
+            
+            //detects bottom of paddle collision
+            if (yBallMove < 0 && xBall + ballRadius > this.x && yBall - ballRadius <= this.y + this.height && yBall + ballRadius >= this.y + this.height) {
+                
+                yBallMove *= -1;
+            
+            }
+            
         }
 
         this.reset = function() {
@@ -97,7 +132,7 @@ function Paddle(x, y) {
         }
     }
 
-//resets the paddle movement from 0 back to 5
+//resets the paddle movement from 0 back to 6
 function resetPadMovement() {
     p1PadMove = 6;
     p2PadMove = 6;
