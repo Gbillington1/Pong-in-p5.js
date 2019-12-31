@@ -3,7 +3,7 @@ var xBall = width / 2;
 //y-cord for ball 
 var yBall = height / 2;
 //diameter of ball
-var ballDiameter = 30;
+var ballDiameter = 20;
 var ballRadius = (ballDiameter / 2);
 //variables for moving ball (random)
 function randomBallMovement(min, max) {
@@ -26,6 +26,7 @@ function resetBall() {
     xBall = width / 2;
     yBall = height / 2;
     gameActive = false;
+    resetTimer();
 }
 
 //moving the ball
@@ -36,14 +37,14 @@ function moveBall() {
     yBall += yBallMove;
     
     //scores point on left wall
-    if (xBall <= ballRadius) {
+    if (xBall <= 0) {
         scoreP1 ++;
         resetBall();
         resetPaddles();
     }
 
     //scores point on right wall
-    if (xBall >= width - ballRadius) {
+    if (xBall >= width) {
         scoreP2 ++;
         resetBall();
         resetPaddles();
