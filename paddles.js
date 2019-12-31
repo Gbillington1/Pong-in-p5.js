@@ -6,8 +6,8 @@ var p2PadMove = 6;
 function Paddle(x, y) {
         this.x = x;
         this.y = y;
-        this.width = 15;
-        this.height = 100;
+        this.width = 10;
+        this.height = 76;
 
         //draw paddles
         this.make = function() {
@@ -79,7 +79,7 @@ function Paddle(x, y) {
         this.ballPad1Collision = function() {
         
             //detects right face collision
-            if (xBallMove < 0 && yBall <= this.y + this.height && yBall >= this.y && xBall - ballRadius <= this.x + this.width && xBall - ballRadius >= this.x + this.width) {
+            if (xBallMove < 0 && yBall - (ballRadius / 2) <= this.y + this.height && yBall + (ballRadius / 2) >= this.y && xBall - ballRadius <= this.x + this.width && xBall - ballRadius >= this.x + this.width) {
                     
                 xBallMove *= -1;
                 
@@ -98,13 +98,12 @@ function Paddle(x, y) {
                 yBallMove *= -1;
             
             }
-            
         }
         
         //bounce off player 2 paddle 
         this.ballPad2Collision = function() {
            
-            if (xBallMove > 0 && yBall <= this.y + this.height && yBall >= this.y && xBall + ballRadius >= this.x && xBall + ballRadius <= this.x) {
+            if (xBallMove > 0 && yBall - (ballRadius / 2) <= this.y + this.height && yBall + (ballRadius / 2) >= this.y && xBall + ballRadius >= this.x && xBall + ballRadius <= this.x) {
                 
                 xBallMove *= -1;
             
@@ -144,8 +143,8 @@ function resetPaddles() {
 } 
 
 //makes left and right paddle
-var player1Paddle = new Paddle(25, height / 2 - 50);
-var player2Paddle = new Paddle(width - 50, height / 2 - 50);
+var player1Paddle = new Paddle(25, height / 2 - 38);
+var player2Paddle = new Paddle(width - 35, height / 2 - 38);
 
 //draws paddle in sketch.js
 function drawPaddles() {
