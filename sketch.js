@@ -1,23 +1,61 @@
 //width and height of canvas
 var width = 800;
-var height = 500
+var height = 500;
 
-//says that all collisions are FALSE
-var hit = false;
+//declars gloablly
+var timerLength;
+var resetLength;
+
+//resets timer variables
+function resetTimer() {
+    timerLength = 3000;
+    resetLength = millis();
+}
 
 function setup() {
     var canvas = createCanvas(800, 500);
     noStroke();
     canvas.parent("container");
+    //3 second timer length
+    resetTimer();
 }
 
+//says that the game has not started
+//this value needs to change to true on click of the html button
+var isStarted = false;
 //sets the "home screen" to static image
 var gameActive = false;
+//says that the game isn't paused
+var isPaused = false;
 
 //if space bar is pressed -> start game
-function startGameButton() {
-    if (key === " " && gameActive === false) {
+function startGame() {
+    if (millis() - timerLength > resetLength && gameActive === false && isPaused === false && isStarted === true) {
         gameActive = true;
+    }
+}
+
+//pauses / plays game when p key is pressed
+function pauseGame() {
+    //allows the game to be paused / played when the ball is not in starting position
+    if (!(xBall === width/2 && yBall === height/2)) {
+        if (gameActive === true && key === "P" || gameActive === true && key === "p") {
+            gameActive = false;
+            isPaused = true;
+        } else if (gameActive === false && key === "P" || gameActive ===false && key === "p") {
+            gameActive = true;
+            isPaused = false;
+        }
+    }
+}
+
+//resets game when r key is pressed
+function resetGame() {
+    if (key === "R" || key === "r") {
+        resetBall();
+        resetPaddles();
+        startGame();
+        isPaused = false;
     }
 }
 
@@ -29,6 +67,7 @@ function drawGame() {
     drawPaddles();
     halfLine();
     makeBall();
+    startGame();
 }
 
 //game mechanics
@@ -57,8 +96,13 @@ function draw() {
 }
 
 function keyPressed() {
+
     resetPadMovement();
-    startGameButton();
+
+    pauseGame();
+    
+    resetGame();
+
 }
 
 function keyReleased() {
@@ -67,10 +111,10 @@ function keyReleased() {
         
         player1Paddle.stopPaddle1();
         
-    //only stop p2 paddle if the p2 controls are released
+        //only stop p2 paddle if the p2 controls are released
     } else if (keyCode === 38 || keyCode === 40) {
-
+        
         player2Paddle.stopPaddle2();
-
+        
     }
 }
