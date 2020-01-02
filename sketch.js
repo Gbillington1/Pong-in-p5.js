@@ -56,10 +56,6 @@ function keyPressed() {
 
     resetPadMovement();
 
-    pauseGame();
-
-    resetGame();
-
 }
 
 function keyReleased() {
