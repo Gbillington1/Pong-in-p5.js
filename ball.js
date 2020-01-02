@@ -9,7 +9,7 @@ var ballRadius = (ballDiameter / 2);
 function randomBallMovement(min, max) {
     var num = Math.floor(Math.random() * (max - min + 1)) + min;
     return (num === -3 || num === -2 || num === -1 || num === 0 || num === 1 || num === 2 || num === 3) ? randomBallMovement(min, max) : num;
-} 
+}
 
 var xBallMove = randomBallMovement(-5, 5);
 var yBallMove = randomBallMovement(-5, 5);
@@ -35,17 +35,17 @@ function moveBall() {
     xBall += xBallMove;
     //moving the ball (y) by 5 on every draw loop
     yBall += yBallMove;
-    
+
     //scores point on left wall
     if (xBall <= 0) {
-        scoreP1 ++;
+        scoreP1++;
         resetBall();
         resetPaddles();
     }
 
     //scores point on right wall
     if (xBall >= width) {
-        scoreP2 ++;
+        scoreP2++;
         resetBall();
         resetPaddles();
     }
