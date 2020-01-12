@@ -1,5 +1,4 @@
 //declars gloablly
-var timerLength;
 var resetLength;
 //1 second timer
 var oneSecTimer;
@@ -37,10 +36,8 @@ function drawScore() {
 
 //resets timer variables
 function resetTimer() {
-    timerLength = 3000;
     oneSecTimer = 1000;
     resetLength = millis();
-    resetDisplayLength = millis();
     timerDisplay = 3;
 }
 
@@ -49,30 +46,28 @@ function startButton() {
     resetTimer();
     isStarted = true;
     countDown = true;
+    levelPicked = true;
 }
 
 
 //start game with timer
 function startGame() {
-    if (millis() - timerLength > resetLength && gameActive === false && isPaused === false && isStarted === true) {
-        gameActive = true;
-    }
 
     textSize(80);
     stroke(0, 140, 186);
     strokeWeight(7);
     text(timerDisplay, width / 2, (height / 2) - 28);
 
-    if (millis() - oneSecTimer > resetDisplayLength && timerDisplay > 0 && gameActive === false && isPaused === false && isStarted === true) {
+    if (millis() - oneSecTimer > resetLength && timerDisplay >= 0 && gameActive === false && isPaused === false && isStarted === true && levelPicked === true) {
 
         timerDisplay--;
-        resetDisplayLength = millis();
-
+        resetLength = millis();
+        
     }
-
+    
     if (timerDisplay === 0) {
 
-        countDown = false;
+        gameActive = true;
 
     }
 }
@@ -84,9 +79,11 @@ function pauseGame() {
         if (gameActive === true) {
             gameActive = false;
             isPaused = true;
+            countDown = false;
         } else if (gameActive === false) {
             gameActive = true;
             isPaused = false;
+            countDown = true;
         }
     }
 }
@@ -96,8 +93,11 @@ function resetGame() {
     resetBall();
     resetPaddles();
     startGame();
+    resetLevelBool();
     isPaused = false;
     isStarted = false;
+    countDown = false;
+    levelPicked = false;
     scoreP1 = 0;
     scoreP2 = 0;
 }
