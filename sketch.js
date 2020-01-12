@@ -21,6 +21,13 @@ function drawGame() {
     drawPaddles();
     halfLine();
     makeBall();
+    drawButtons();
+    if (mouseIsPressed) {
+        if (levelPicked === false) {
+            changeLevel();
+            isUnder = false;
+        }
+    }
     if (countDown === true) {
         startGame();
     }
