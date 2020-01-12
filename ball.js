@@ -5,14 +5,10 @@ var yBall = height / 2;
 //diameter of ball
 var ballDiameter = 20;
 var ballRadius = (ballDiameter / 2);
-//variables for moving ball (random)
-function randomBallMovement(min, max) {
-    var num = Math.floor(Math.random() * (max - min + 1)) + min;
-    return (num === -3 || num === -2 || num === -1 || num === 0 || num === 1 || num === 2 || num === 3) ? randomBallMovement(min, max) : num;
-}
 
-var xBallMove = randomBallMovement(-5, 5);
-var yBallMove = randomBallMovement(-5, 5);
+//defines for later reassignment
+var xBallMove;
+var yBallMove;
 
 //making the ball
 function makeBall() {
@@ -41,6 +37,7 @@ function moveBall() {
         scoreP1++;
         resetBall();
         resetPaddles();
+        resetTimer();
     }
 
     //scores point on right wall
@@ -48,6 +45,7 @@ function moveBall() {
         scoreP2++;
         resetBall();
         resetPaddles();
+        
     }
 
     //bounces ball off top and bottom
